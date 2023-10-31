@@ -1,0 +1,10 @@
+defaults:
+  - /ds@_here_: _base
+
+name: GM12878_chr10_5k
+
+spec:
+  fname: "GSE63525_GM12878_insitu_primary_30.hic.chr10.all.5k.mcoo"
+  chr: "10"
+  res: 5000
+  balancing: "KR"

@@ -1,0 +1,23 @@
+autopep8
+pylint
+pylance
+gitrepo
+gitpython
+
+numpy
+pandas
+scipy
+matplotlib
+plotly
+
+torch
+torch_tb_profiler
+pytorch_lightning
+torchmetrics
+
+mlflow[extras]==2.3.2
+hydra-core #? Optional
+mysqlclient
+
+cooler
+hic-straw

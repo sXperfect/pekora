@@ -1,0 +1,39 @@
+# study_prefix: 3DR
+hydra:
+  job:
+    chdir: False
+  run:
+    dir: ${path.hydra}/${hydra:runtime.choices.exp}/${now:%Y-%m-%d_%H-%M-%S}
+
+optuna_type:
+  INT: 0
+  FLOAT: 1
+  LOG: 2
+  CATEGORICAL: 3
+
+args:
+  dry_run: False
+  overwrite: False
+  mode: optimize
+  num_trials: ???
+  study_name: ???
+  max_epochs: ???
+  precision: 32
+  accelerator: gpu
+
+ds: ???
+
+pl:
+  trainer:
+    max_epochs: ${args.max_epochs}
+    precision: ${args.precision}
+    accelerator: ${args.accelerator}
+    #? Logging
+    log_every_n_steps: 1
+    #? Disable stats when not debugging
+    enable_model_summary: False
+    enable_progress_bar: False
+    #? Completely disable validation loop
+    num_sanity_val_steps: 0
+    limit_val_batches: 0
+    check_val_every_n_epoch: 0
