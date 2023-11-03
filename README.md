@@ -1,7 +1,6 @@
 # High-Performance 3D Genome Reconstruction Using K-th Order Spearman’s Rank Correlation Approximation (PEKORA)
 
 This is the open-source software **PEKORA**.
-Through sophisticated biological modeling we enable highly efficient compression of Hi-C contact matrices.
 
 ## Quick start
 
@@ -51,7 +50,11 @@ python main.py +node=default +exp=profile4_cpu args.input=GSE63525_GM12878_insit
 ```
 for running `profile4` on `cpu`, reconstrucing from `GSE63525_GM12878_insitu_primary_30.mcool` chromosome `"22"` at resolution `5000`.
 
-All configs are stored in `configs/exp`, consisting of profile 1 to profile 4.
+All configs are stored in `configs/exp`, consisting of profile 1 to profile 4:
+- `profile1_cpu`
+- `profile2_cpu`
+- `profile3_cpu`
+- `profile4_cpu`
 
 To run on gpu, add parameter `args.accelerator=gpu`
 
