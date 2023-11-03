@@ -1,0 +1,9 @@
+# @package _global_
+default:
+  - base
+
+path:
+  dataset: "data"
+  output: "results"
+  # logs: "${path.output}/logs"
+  hydra: "${path.output}/hydra"

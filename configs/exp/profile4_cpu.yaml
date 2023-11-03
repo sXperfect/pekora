@@ -1,0 +1,46 @@
+# @package _global_
+
+args:
+  study_name: 3DR-profile4-${args.accelerator}${args.precision}-alpha_${run_config.parameters.preproc-basic_preproc-alpha}
+  dry_run: False
+  overwrite: False
+  optimize: True
+  num_trials: 1
+  num_iters: 1
+  max_epochs: 150
+  accelerator: cpu
+  precision: 64
+  mode: run
+
+ds:
+  preproc_pipeline: null
+
+pl:
+  callbacks: null
+  trainer:
+    max_epochs: ${args.max_epochs}
+
+run_config:
+  parameters:
+    preproc-basic_preproc-alpha: -1.0
+    learning_rate: 1e-1
+    optimizer: adam
+    adam-beta1: 0.91
+    adam-beta2: 0.935
+
+    scheduler: borzelai-borwein
+    bb-max_lr: 1e-1
+    bb-min_lr: 1e-8
+    bb-steps: 1
+    bb-beta: 1e-2
+    bb-weight_decay: 0.0
+
+    model-loss: mse
+    model-reg_Y_name: ksa
+    model-reg_Y_weight: 0.45
+    model-reg_Y_kwargs-ksa_order: 5
+    model-reg_Y_kwargs-nonlin: relu
+
+    model-reg_P_dist_name: MinimizeAdjecentPointDistance
+    model-reg_P_dist_weight: 0.1
+    model-reg_P_dist-mode: square

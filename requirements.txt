@@ -1,0 +1,18 @@
+cython
+autopep8
+pylint
+pylance
+gitpython
+
+numpy
+pandas
+scipy
+matplotlib
+plotly
+
+torch
+torch_tb_profiler
+pytorch_lightning
+torchmetrics
+
+hydra-core #? Optional
