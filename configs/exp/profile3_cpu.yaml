@@ -17,10 +17,10 @@ ds:
 
 pl:
   callbacks: null
-<<<<<<< HEAD
-=======
-  save_model: True
-  save_model_path: outputs/profile3_cpu
+  trainer:
+    max_epochs: ${args.max_epochs}
+
+run_config:
   parameters:
     preproc-basic_preproc-alpha: -1.0
     learning_rate: 0.0095

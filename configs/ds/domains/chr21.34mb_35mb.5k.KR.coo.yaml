@@ -1,8 +1,0 @@
-defaults:
-  - /ds@_here_: _base
-
-spec:
-  fname: "4DNFI1UEG1HD.hic.chr21.34mb_35mb.5k.KR.coo"
-  chr: "21"
-  res: 5000
-  balancing: "KR"

@@ -4,11 +4,5 @@ default:
 
 path:
   dataset: "data"
-<<<<<<< HEAD
   output: "results"
-  # logs: "${path.output}/logs"
-=======
-  output: "tmp"
-  logs: "${path.output}/logs"
->>>>>>> 2eb78de191103b17da941ad8beaa3772d7ab7164
   hydra: "${path.output}/hydra"
