@@ -34,7 +34,7 @@ mkdir -p data && cd data
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE63nnn/GSE63525/suppl/GSE63525%5FGM12878%5Finsitu%5Fprimary%5F30%2Ehic
 ```
 
-Our tool support both `hic` and `mcool` format but we recommend using `mcool`.
+Our tool support both `hic` and `mcool` format but we highly recommend using `mcool`.
 To convert `hic` data to `mcool`:
 ```shell
 hic2cool convert GSE63525_GM12878_insitu_primary_30.hic GSE63525_GM12878_insitu_primary_30.mcool
@@ -50,6 +50,8 @@ Run our tool **PEKORA**:
 python main.py +node=default +exp=profile4_cpu args.input=GSE63525_GM12878_insitu_primary_30.mcool args.res=5000 args.chr='22'
 ```
 for running `profile4` on `cpu`, reconstrucing from `GSE63525_GM12878_insitu_primary_30.mcool` chromosome `"22"` at resolution `5000`.
+
+All configs are stored in `configs/exp`, consisting of profile 1 to profile 4.
 
 To run on gpu, add parameter `args.accelerator=gpu`
 
