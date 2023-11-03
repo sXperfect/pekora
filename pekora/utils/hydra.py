@@ -26,3 +26,5 @@ def init_hydra_and_check_config(
     missing_keys = OmegaConf.missing_keys(cfg)
     if len(missing_keys):
         raise RuntimeError(f"The following keys are missing {missing_keys}")
+    
+    return hydra_cfg

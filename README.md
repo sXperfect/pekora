@@ -46,7 +46,7 @@ cd ..
 
 Run our tool **PEKORA**:
 ```shell
-python main.py +node=default +exp=profile4_cpu args.input=GSE63525_GM12878_insitu_primary_30.mcool args.res=5000 args.chr='22'
+python main.py +node=default +exp=profile4_cpu args.input=GSE63525_GM12878_insitu_primary_30.mcool args.res=5000 args.chr=\'22\'
 ```
 for running `profile4` on `cpu`, reconstrucing from `GSE63525_GM12878_insitu_primary_30.mcool` chromosome `"22"` at resolution `5000`.
 
@@ -57,6 +57,8 @@ All configs are stored in `configs/exp`, consisting of profile 1 to profile 4:
 - `profile4_cpu`
 
 To run on gpu, add parameter `args.accelerator=gpu`
+
+The results are stored inside `results` folder.
 
 ## Usage policy
 

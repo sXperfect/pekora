@@ -2,6 +2,7 @@
 tmp/
 data/
 outputs/
+results/
 
 lightning_logs
 mlruns

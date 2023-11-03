@@ -33,6 +33,7 @@ def load_dataset(cfg:DictConfig):
     return df
 
 def objective_f(
+    hydra_cfg,
     trial,
     cfg:DictConfig,
     df:pd.DataFrame=None,
@@ -227,7 +228,7 @@ def objective_f(
         
         if cfg.args.dry_run is False: 
             P = model_obj.arch.P.detach().numpy()
-            fname = f"{cfg.args.input}-{cfg.args.chr}-{cfg.args.res}.npy"
+            fname = f"{hydra_cfg.runtime.choices.exp}-{cfg.args.input}-{cfg.args.chr}-{cfg.args.res}.npy"
             np.save(
                 join(
                     cfg.path.output,
@@ -248,15 +249,15 @@ def objective_f(
            
     if mode == 'run':
         pass
-        # D = (
-        #     model_obj
-        #     .compute_D_nograd(
-        #         train_df[const.ROW_IDS_COLNAME].to_numpy(), #? It does not contains the main diag
-        #         train_df[const.COL_IDS_COLNAME].to_numpy()  #? It does not contains the main diag
-        #     )
-        #     .detach()
-        #     .numpy()
-        # )
+        D = (
+            model_obj
+            .compute_D_nograd(
+                train_df[const.ROW_IDS_COLNAME].to_numpy(), #? It does not contains the main diag
+                train_df[const.COL_IDS_COLNAME].to_numpy()  #? It does not contains the main diag
+            )
+            .detach()
+            .numpy()
+        )
         
         # mse_loss_f = select_loss('mse_np')
         # mse_loss = mse_loss_f(
@@ -264,14 +265,16 @@ def objective_f(
         #     train_df[const.DIST_COLNAME].to_numpy() #? It does not contains the main diag
         # )
         
-        # #? Negative value because compared against D and the correlation is inverse
-        # score = (
-        #     -stats.spearmanr(
-        #         D,
-        #         train_df[const.COUNTS_COLNAME].to_numpy()
-        #     )
-        #     .statistic
-        # )
+        #? Negative value because compared against D and the correlation is inverse
+        score = (
+            -stats.spearmanr(
+                D,
+                train_df[const.COUNTS_COLNAME].to_numpy()
+            )
+            .statistic
+        )
+        
+        print(f"Spearman's rank correlation: {score}")
 
         # metrics = {
         #     "metric-mse": mse_loss, #? MSE of all data
@@ -294,7 +297,7 @@ def objective_f(
 def main(cfg:DictConfig):
     ###! DO NOT CHANGE ###
     utils.ignore_pl_warnings()
-    utils.init_hydra_and_check_config(cfg)
+    hydra_cfg = utils.init_hydra_and_check_config(cfg)
 
     missing_keys = OmegaConf.missing_keys(cfg)
     if len(missing_keys):
@@ -312,6 +315,7 @@ def main(cfg:DictConfig):
         )
 
         objective_f(
+            hydra_cfg,
             run_cfg,
             cfg,
             df=df,
