@@ -56,7 +56,7 @@ All configs are stored in `configs/exp`, consisting of profile 1 to profile 4:
 - `profile3_cpu`
 - `profile4_cpu`
 
-To run on gpu, add parameter `args.accelerator=gpu`
+To run on gpu, add parameter `args.accelerator=gpu` and set the precision to either 16 or 32 bits using parameter `args.precision=<precision>` (Default is 64 for CPU).
 
 The results are stored inside `results` folder.
 
