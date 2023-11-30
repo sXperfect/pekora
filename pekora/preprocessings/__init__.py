@@ -41,7 +41,7 @@ def preproc_data(
 
     return row_ids, col_ids, C_vals, D_vals
 
-def basic_preproc_df(
+def count_to_dist(
     df:pd.DataFrame,
     alpha=-0.25,
     na_inf_val=None,

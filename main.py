@@ -48,7 +48,7 @@ def objective_f(
     alpha = trial_cfg.suggest_param("preproc-basic_preproc-alpha")
     
     #? Create train_df containing "wish distance" also with main diagonal removed
-    train_df = preprocessings.basic_preproc_df(
+    train_df = preprocessings.count_to_dist(
         df.copy() if mode == 'optimize' else df, #? To minimize memory consumption for single run
         alpha=alpha
     )
@@ -259,12 +259,6 @@ def objective_f(
             .numpy()
         )
         
-        # mse_loss_f = select_loss('mse_np')
-        # mse_loss = mse_loss_f(
-        #     D, 
-        #     train_df[const.DIST_COLNAME].to_numpy() #? It does not contains the main diag
-        # )
-        
         #? Negative value because compared against D and the correlation is inverse
         score = (
             -stats.spearmanr(
@@ -276,16 +270,6 @@ def objective_f(
         
         print(f"Spearman's rank correlation: {score}")
 
-        # metrics = {
-        #     "metric-mse": mse_loss, #? MSE of all data
-        #     "metric-spearmann_r": score #? Spearman of all data
-        # }
-        
-        # if cfg.args.dry_run is False and logger is not None:  
-        #     utils.logger.log_hparams_metrics(
-        #         logger,
-        #         metrics=metrics
-        #     )
     else:
         raise ValueError(f"Invalid mode:{mode}")
 

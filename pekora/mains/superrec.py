@@ -54,7 +54,9 @@ def comp_superrec_spearmanr(
 
     res = stats.spearmanr(counts, D)
     corr = res.correlation
+    
+    #? Data_ratio is one because it involves mapping from original point indices to
+    #? the new point indices
+    data_ratio = 1.0
 
-    print(corr)
-
-    pass
+    print(f"Region (Chromosome):{chr1_region}; Spearman R:{corr:.03f}; Data Ratio:{data_ratio:.03f}")

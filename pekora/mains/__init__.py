@@ -5,3 +5,4 @@ from .shneigh import comp_shneigh_spearmanr
 from .h3dg import comp_h3dg_spearmanr
 from .flamingo import comp_flamingo_spearmanr
 from .myflamingo import comp_myflamingo_spearmanr
+from .pekora import comp_pekora_spearmanr

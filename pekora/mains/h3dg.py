@@ -146,4 +146,4 @@ def comp_h3dg_spearmanr(
     corr = res.correlation
     data_ratio = valid_data_mask.sum() / valid_data_mask.size
 
-    print(f"Region:{chr1_region}; Corr:{corr:.03f}; DataRatio:{data_ratio:.03f}")
+    print(f"Region (Chromosome):{chr1_region}; Spearman R:{corr:.03f}; Data Ratio:{data_ratio:.03f}")
