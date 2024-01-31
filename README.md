@@ -46,15 +46,13 @@ cd ..
 
 Run our **PEKORA** tool:
 ```shell
-python main.py +node=default +exp=profile4_cpu args.input=GSE63525_GM12878_insitu_primary_30.mcool args.res=5000 args.chr=\'22\'
+python main.py +node=default +exp=profile1_cpu args.input=GSE63525_GM12878_insitu_primary_30.mcool args.res=5000 args.chr=\'22\'
 ```
-to run `profile4` on `cpu`, reconstructing from `GSE63525_GM12878_insitu_primary_30.mcool` chromosome `'22'` at resolution `5000`.
+to run `profile1` on `cpu`, reconstructing from `GSE63525_GM12878_insitu_primary_30.mcool` chromosome `'22'` at resolution `5000`.
 
-All configs are stored in `configs/exp`, consisting of profiles 1 to profile 4:
+All configs are stored in `configs/exp`, consisting of profiles 1 to profile 2:
 - `profile1_cpu`
 - `profile2_cpu`
-- `profile3_cpu`
-- `profile4_cpu`
 
 To run on gpu, add the parameter `args.accelerator=gpu` and set the precision to either 16 or 32 bits with the parameter `args.precision=<precision>` (default is 64 bits or double for CPU).
 
@@ -98,7 +96,7 @@ python main.py +node=default +exp=<profile_name> args.input=<input_file> args.re
 
 arguments:
   profile_name      Profile filename in the configs/exp folder
-  input_file        Input file in the data folder
+  input_file        Input file in the data folder. Either .hic or .mcool
   resolution        Resolution
   chromosome        Chromosome name
   balancing         Matrix balancing method. Must be precomputed and stored in the input file.

@@ -7,7 +7,7 @@ args:
   optimize: True
   num_trials: 1
   num_iters: 1
-  max_epochs: 500
+  max_epochs: 150
   accelerator: cpu
   precision: 64
   mode: run
@@ -23,13 +23,17 @@ pl:
 run_config:
   parameters:
     preproc-basic_preproc-alpha: -1.0
+    learning_rate: 0.0095
+    optimizer: adam
+    adam-beta1: 0.915
+    adam-beta2: 0.902
 
-    learning_rate: 0.0095  
-    optimizer: sgd
-    sgd-momentum: 0.99
-    sgd-weight_decay: 0.05
-
-    scheduler: null
+    scheduler: borzelai-borwein
+    bb-max_lr: 1e-1
+    bb-min_lr: 1e-8
+    bb-steps: 1
+    bb-beta: 1e-2
+    bb-weight_decay: 0.0
 
     model-loss: mse
     model-reg_Y_name: null
