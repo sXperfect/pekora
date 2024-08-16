@@ -18,13 +18,22 @@ parser.add_argument('--overwrite', action='store_true')
 subparsers = parser.add_subparsers(dest='mode')
 
 create_h3dg_coo_parser = subparsers.add_parser('create_h3dg_coo')
+create_contact_coo_parser = subparsers.add_parser('create_contact_coo')
+create_contact_mcoo_parser = subparsers.add_parser('create_contact_mcoo')
+comp_superrec_spearmanr_parser = subparsers.add_parser('comp_superrec_spearmanr')
+comp_shneigh_spearmanr_parser = subparsers.add_parser('comp_shneigh_spearmanr')
+comp_h3dg_spearmanr_parser = subparsers.add_parser('comp_h3dg_spearmanr')
+comp_flamingo_spearmanr_parser = subparsers.add_parser('comp_flamingo_spearmanr')
+comp_myflamingo_spearmanr_parser = subparsers.add_parser('comp_myflamingo_spearmanr')
+comp_pekora_spearmanr_parser = subparsers.add_parser('comp_pekora_spearmanr')
+plot_pekora_genome_parser = subparsers.add_parser('plot_pekora_coor')
+
 create_h3dg_coo_parser.add_argument('chr_region', metavar='chr_region', help=CHR1_REG_HELP)
 create_h3dg_coo_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
 create_h3dg_coo_parser.add_argument('balancing', metavar='balancing', help=BALANCING_HELP, choices=["KR", "VC", "VC_SQRT"])
 create_h3dg_coo_parser.add_argument('input', metavar='input_file_path', help=INPUT_HELP)
 create_h3dg_coo_parser.add_argument('output', metavar='output_file_path', help=OUTPUT_HELP)
 
-create_contact_coo_parser = subparsers.add_parser('create_contact_coo')
 create_contact_coo_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 create_contact_coo_parser.add_argument('--output-resolution-one', action='store_true')
 create_contact_coo_parser.add_argument('--output-delimiter', default=const.DEF_SEP, type=str)
@@ -36,7 +45,6 @@ create_contact_coo_parser.add_argument('balancing', metavar='balancing', help=BA
 create_contact_coo_parser.add_argument('input', metavar='input_file_path', help=INPUT_HELP)
 create_contact_coo_parser.add_argument('output', metavar='output_file_path', help=OUTPUT_HELP)
 
-create_contact_mcoo_parser = subparsers.add_parser('create_contact_mcoo')
 create_contact_mcoo_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 create_contact_mcoo_parser.add_argument('--output-resolution-one', action='store_true')
 create_contact_mcoo_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
@@ -45,7 +53,6 @@ create_contact_mcoo_parser.add_argument('balancing', metavar='balancing', help=B
 create_contact_mcoo_parser.add_argument('input', metavar='input_file_path', help=INPUT_HELP)
 create_contact_mcoo_parser.add_argument('output', metavar='output_file_path', help=OUTPUT_HELP)
 
-comp_superrec_spearmanr_parser = subparsers.add_parser('comp_superrec_spearmanr')
 comp_superrec_spearmanr_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 comp_superrec_spearmanr_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
 comp_superrec_spearmanr_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
@@ -53,7 +60,6 @@ comp_superrec_spearmanr_parser.add_argument('balancing', metavar='balancing', he
 comp_superrec_spearmanr_parser.add_argument('input', metavar='data_file_path', help=INPUT_HELP)
 comp_superrec_spearmanr_parser.add_argument('points', metavar='points_file_path', help=POINTS_HELP)
 
-comp_shneigh_spearmanr_parser = subparsers.add_parser('comp_shneigh_spearmanr')
 comp_shneigh_spearmanr_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 comp_shneigh_spearmanr_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
 comp_shneigh_spearmanr_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
@@ -61,7 +67,6 @@ comp_shneigh_spearmanr_parser.add_argument('balancing', metavar='balancing', hel
 comp_shneigh_spearmanr_parser.add_argument('input', metavar='data_file_path', help=INPUT_HELP)
 comp_shneigh_spearmanr_parser.add_argument('points', metavar='points_file_path', help=POINTS_HELP)
 
-comp_h3dg_spearmanr_parser = subparsers.add_parser('comp_h3dg_spearmanr')
 comp_h3dg_spearmanr_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 comp_h3dg_spearmanr_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
 comp_h3dg_spearmanr_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
@@ -70,7 +75,6 @@ comp_h3dg_spearmanr_parser.add_argument('input', metavar='data_file_path', help=
 comp_h3dg_spearmanr_parser.add_argument('points', metavar='points_file_path', help=POINTS_HELP)
 comp_h3dg_spearmanr_parser.add_argument('mapping', metavar='mapping_file_path', help="")
 
-comp_flamingo_spearmanr_parser = subparsers.add_parser('comp_flamingo_spearmanr')
 comp_flamingo_spearmanr_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 comp_flamingo_spearmanr_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
 comp_flamingo_spearmanr_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
@@ -78,7 +82,6 @@ comp_flamingo_spearmanr_parser.add_argument('balancing', metavar='balancing', he
 comp_flamingo_spearmanr_parser.add_argument('input', metavar='data_file_path', help=INPUT_HELP)
 comp_flamingo_spearmanr_parser.add_argument('points', metavar='points_file_path', help=POINTS_HELP)
 
-comp_myflamingo_spearmanr_parser = subparsers.add_parser('comp_myflamingo_spearmanr')
 comp_myflamingo_spearmanr_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 comp_myflamingo_spearmanr_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
 comp_myflamingo_spearmanr_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
@@ -86,13 +89,19 @@ comp_myflamingo_spearmanr_parser.add_argument('balancing', metavar='balancing', 
 comp_myflamingo_spearmanr_parser.add_argument('input', metavar='data_file_path', help=INPUT_HELP)
 comp_myflamingo_spearmanr_parser.add_argument('points', metavar='points_file_path', help=POINTS_HELP)
 
-comp_pekora_spearmanr_parser = subparsers.add_parser('comp_pekora_spearmanr')
 comp_pekora_spearmanr_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
 comp_pekora_spearmanr_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
 comp_pekora_spearmanr_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
 comp_pekora_spearmanr_parser.add_argument('balancing', metavar='balancing', help=BALANCING_HELP, choices=const.AVAIL_BALANCINGS)
 comp_pekora_spearmanr_parser.add_argument('input', metavar='data_file_path', help=INPUT_HELP)
 comp_pekora_spearmanr_parser.add_argument('points', metavar='points_file_path', help=POINTS_HELP)
+
+plot_pekora_genome_parser.add_argument('--chr2_region', metavar='chr2_region', help=CHR2_REG_HELP)
+plot_pekora_genome_parser.add_argument('chr1_region', metavar='chr1_region', help=CHR1_REG_HELP)
+plot_pekora_genome_parser.add_argument('resolution', metavar='resolution', help=RES_HELP, type=int)
+plot_pekora_genome_parser.add_argument('balancing', metavar='balancing', help=BALANCING_HELP, choices=const.AVAIL_BALANCINGS)
+plot_pekora_genome_parser.add_argument('input', metavar='data_file_path', help=INPUT_HELP)
+plot_pekora_genome_parser.add_argument('points', metavar='points_file_path', help=POINTS_HELP)
 
 def run(args):
     if args.mode == 'create_h3dg_coo':
@@ -187,6 +196,14 @@ def run(args):
         )
     elif args.mode == 'comp_pekora_spearmanr':
         mains.comp_pekora_spearmanr(
+            args.chr1_region,
+            args.resolution,
+            args.balancing,
+            args.input,
+            args.points,
+        )
+    elif args.mode == 'plot_pekora_coor':
+        mains.plot_pekora_coor(
             args.chr1_region,
             args.resolution,
             args.balancing,

@@ -1,3 +1,4 @@
+import typing as t
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -6,13 +7,51 @@ from .. import loaders
 from .. import utils
 
 def comp_myflamingo_spearmanr(
-    chr1_region:str,
-    resolution:int,
-    balancing:str,
-    input_fpath:str,
-    points_fpath:str,
-    chr2_region:str=None,
-):
+    chr1_region: str,
+    resolution: int,
+    balancing: str,
+    input_fpath: str,
+    points_fpath: str,
+    chr2_region: t.Optional[str] = None,
+) -> None:
+    """
+    Compute Spearman rank correlation coefficient between 3C data and distance matrix.
+
+    Parameters
+    ----------
+    chr1_region : str
+        Chromosome region for 3C data.
+    resolution : int
+        Resolution for 3C data.
+    balancing : str
+        Balancing method for 3C data.
+    input_fpath : str
+        Path to input 3C data file.
+    points_fpath : str
+        Path to points data file.
+    chr2_region : Optional[str]
+        Chromosome region for second 3C data (optional).
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function filters out data points that got removed during simulation,
+    computes distance matrix from points data, and calculates Spearman rank
+    correlation coefficient between 3C data and distance matrix.
+
+    Examples
+    --------
+    >>> comp_myflamingo_spearmanr('chr1', 10000, ' vanilla', 'input_data.txt', 'points_data.txt')
+    Region (Chromosome):chr1; Spearman R:0.800; Data Ratio:0.900
+
+    Authors
+    -------
+    - Yeremia G. Adhisantoso (adhisant@tnt.uni-hannover.de)
+    - Llama3.1 70B - 4.0bpw
+    """
 
     count_df = loaders.load_3c_data(
         input_fpath,
@@ -66,5 +105,3 @@ def comp_myflamingo_spearmanr(
     data_ratio = valid_data_mask.sum() / valid_data_mask.size
 
     print(f"Region (Chromosome):{chr1_region}; Spearman R:{corr:.03f}; Data Ratio:{data_ratio:.03f}")
-
-    pass

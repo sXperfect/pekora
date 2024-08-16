@@ -5,6 +5,10 @@ from .spearman_approx import k_order_spearman_approx
 from .reg_points import (
     MinimizeAdjecentPointDistance,
 )
+from .mds import (
+    MultiDimensionalScaling,
+    WeightedMultiDimensionalScaling,
+)
 
 SPEARMAN_WARN = "The use of Spearman Correlation as a loss function is not recommended due to runtime overhead!"
 
@@ -24,6 +28,8 @@ def select_loss(name, args=None, kwargs=None):
         f = partial(F.l1_loss, reduction='mean')
     elif name == 'sae':
         f = partial(F.l1_loss, reduction='sum')
+    elif name in ['mds']:
+        f = MultiDimensionalScaling(*args, **kwargs)
     
     return f
 

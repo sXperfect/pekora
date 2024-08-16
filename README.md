@@ -1,39 +1,42 @@
 # High-Performance 3D Genome Reconstruction Using K-th Order Spearman’s Rank Correlation Approximation (PEKORA)
 
-This is the open source software **PEKORA**.
+**PEKORA** is an open-source, high-performance tool for 3D genome reconstruction.
 
 ## Quick start
 
-For a smooth quick start, we have created a short guide to run our software
-We have tested this software on `Ubuntu` operating system with `conda` software.
+To get started quickly, we provide a step-by-step guide to run our software. 
+We have tested it on `Ubuntu` with `conda` and encourage users to follow these instructions.
 
-First, clone the repository and enter the directory:
+First, clone the repository and navigate to the directory:
 
 ```shell
 git clone https://github.com/sXperfect/pekora
 cd pekora
 ```
 
-Create a virtual environment using `conda` and install the necessary libraries
+Create a virtual environment using `conda` and install required libraries:
+
 ```shell
 conda create -y -n pekora python=3.11
 conda activate pekora
 conda install -y -c conda-forge cmake gxx_linux-64 gcc_linux-64 zlib curl
 ```
 
-Install Python libraries
+Install Python libraries:
 ```shell
 pip install -r requirements.txt
 pip install hic2cool cooltools cooler hic-straw
 ```
 
-Download the input file `GSE63525_GM12878_insitu_primary_30.hic` from [GEO GSE63525](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525):
+Download the input file `GSE63525_GM12878_insitu_primary_30.hic` from GEO [GSE63525](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525):
+
 ```shell
 mkdir -p data && cd data
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE63nnn/GSE63525/suppl/GSE63525%5FGM12878%5Finsitu%5Fprimary%5F30%2Ehic
 ```
 
-Our tool supports both `hic` and `mcool` formats, but we strongly recommend using `mcool`.
+Our tool supports both `hic` and `mcool` file formats.
+However, we strongly recommend using `mcool` for optimal performance.
 To convert `hic` data to `mcool`:
 ```shell
 hic2cool convert GSE63525_GM12878_insitu_primary_30.hic GSE63525_GM12878_insitu_primary_30.mcool
@@ -44,7 +47,7 @@ Go back to the root directory
 cd ..
 ```
 
-Run our **PEKORA** tool:
+Run **PEKORA**:
 ```shell
 python main.py +node=default +exp=profile1_cpu args.input=GSE63525_GM12878_insitu_primary_30.mcool args.res=5000 args.chr=\'22\'
 ```
@@ -60,26 +63,25 @@ The results are stored in the `results` folder.
 
 ## Usage policy
 
-The open source PEKORA is made available before scientific publication.
+**PEKORA** is an open-source, pre-publication software made available before scientific publication.
 
-This pre-publication software is preliminary and may contain errors.
-The software is provided in good faith, but without any express or implied warranties.
-We refer the reader to our [license](LICENSE).
+This preliminary software may contain errors and is provided in good faith, but without any express or implied warranties.
+Please refer to our [license](LICENSE) for more information.
 
-The goal of our policy is that early release should enable the progress of science.
-We kindly ask to refrain from publishing analyses that were conducted using this software while its development is in progress.
+Our goal is to facilitate scientific progress through early release. 
+We kindly ask users to refrain from publishing analyses conducted using this software while its development is ongoing.
 
 ## Dependencies
 
 Python 3.8 or higher is required.
-It is recommended that you create a virtual environment using conda.
+We recommend creating a virtual environment using `conda`.
 For conda users, the `cmake`, `gcc`, `zlib`, `curl`, and `gxx` libraries are required and can be installed through:
 
 ```shell
 conda install -y -c conda-forge cmake gxx_linux-64 gcc_linux-64 zlib curl
 ```
 
-See [requirements.txt](requirements.txt) for the list of required Python libraries.
+Please refer to [requirements.txt](requirements.txt) for the list of required Python libraries.
 
 In addition, the `hic2cool`, `cooltools`, `cooler`, and `hic-straw` libraries are required to read the input data in `.hic` and `.mcool` formats and must be installed after the installation of the libraries listed in the [requirements.txt](requirements.txt) file.
 
@@ -87,10 +89,10 @@ In addition, the `hic2cool`, `cooltools`, `cooler`, and `hic-straw` libraries ar
 
 Input file must be stored in the [data](data) folder.
 
-For the options or configuration, our tool relies on the [Hydra](https://hydra.cc/docs/intro/) library.
-Please refer to the [base_config.yaml](configs/base_config.yaml) or the profiles in the [exp](configs/exp) folder to see the full options of our tool.
+**PEKORA** relies on the [Hydra](https://hydra.cc/docs/intro/) library for options and configurations.
+Please refer to the [base_config.yaml](configs/base_config.yaml) or the profiles in the [exp](configs/exp) folder for the full list of options.
 
-Reconstructing 3D chromosome structure
+### Reconstructing 3D chromosome structure
 ```shell
 python main.py +node=default +exp=<profile_name> args.input=<input_file> args.res=<resolution> args.chr=\'<chromosome>\' args.balancing=<balancing> [args.accelerator=gpu] args.precision=<precision>
 
@@ -106,7 +108,7 @@ options:
   args.accelerator=gpu  Run on GPU (if available and supported)
 ```
 
-Computing the Spearman's rank correlation of PEKORA result
+### Computing the Spearman's rank correlation of PEKORA result
 ```shell
 usage: python -m pekora comp_pekora_spearmanr [-h] [--chr2_region chr2_region] chr1_region resolution balancing data_file_path points_file_path
 
@@ -123,3 +125,15 @@ options:
                         Region of <chr2>
 ```
 Make sure that the `data_file_path` (or input file) is the one used for the reconstruction process.
+
+## Relevant data to reproduce the experiment
+
+The data can be dowloaded from [NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE63525).
+
+## Contact
+
+Yeremia Gunawan Adhisantoso <[adhisant@tnt.uni-hannover.de](mailto:adhisant@tnt.uni-hannover.de)>
+
+Fabian Müntefering <[muenteferi@tnt.uni-hannover.de](mailto:muenteferi@tnt.uni-hannover.de)>
+
+Jan Voges <[voges@tnt.uni-hannover.de](mailto:voges@tnt.uni-hannover.de)>

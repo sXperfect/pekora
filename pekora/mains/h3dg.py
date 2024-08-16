@@ -5,9 +5,9 @@ import pandas as pd
 from scipy import stats
 from sklearn import metrics
 from scipy.optimize import minimize
-import Bio
-import Bio.PDB
-import Bio.SeqRecord
+# import Bio
+# import Bio.PDB
+# import Bio.SeqRecord
 from .. import const
 from .. import loaders
 from .. import utils
