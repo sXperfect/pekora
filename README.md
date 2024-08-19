@@ -53,9 +53,14 @@ python main.py +node=default +exp=profile1_cpu args.input=GSE63525_GM12878_insit
 ```
 to run `profile1` on `cpu`, reconstructing from `GSE63525_GM12878_insitu_primary_30.mcool` chromosome `'22'` at resolution `5000`.
 
+_Note:_ If the input file is a Hi-C file and an error occurs, "ImportError: /lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.15' not found," please update your environment variable by adding the necessary configuration:
+```shell
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<path_to_conda_installation>/envs/pekora/lib
+```
+
 All configs are stored in `configs/exp`, consisting of profiles 1 to profile 2:
-- `profile1_cpu`
-- `profile2_cpu`
+- `mds-profile1-cpu`
+- `mds-profile2-cpu`
 
 To run on gpu, add the parameter `args.accelerator=gpu` and set the precision to either 16 or 32 bits with the parameter `args.precision=<precision>` (default is 64 bits or double for CPU).
 

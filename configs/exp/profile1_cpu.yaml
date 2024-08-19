@@ -4,8 +4,6 @@ args:
   study_name: 3DR-profile1-${args.accelerator}${args.precision}-alpha_${run_config.parameters.preproc-basic_preproc-alpha}
   dry_run: False
   overwrite: False
-  optimize: True
-  num_trials: 1
   num_iters: 1
   max_epochs: 150
   accelerator: cpu
@@ -35,6 +33,6 @@ run_config:
     bb-beta: 1e-2
     bb-weight_decay: 0.0
 
-    model-loss: mse
+    model-loss: mds
     model-reg_Y_name: null
     model-reg_P_dist_name: null

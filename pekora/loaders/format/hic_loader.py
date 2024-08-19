@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import hicstraw
 from .. import const
 
 def load_hic(
@@ -15,6 +14,7 @@ def load_hic(
     if balancing is None:
         balancing = "NONE"
         
+    import hicstraw
     recs = hicstraw.straw(
         'observed',
         balancing,

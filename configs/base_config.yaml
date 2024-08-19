@@ -1,3 +1,6 @@
+defaults:
+  - node: default
+
 hydra:
   job:
     chdir: False
@@ -13,9 +16,7 @@ optuna_type:
 args:
   dry_run: False
   overwrite: False
-  mode: optimize
-  num_trials: ???
-  study_name: ???
+  mode: run
   max_epochs: ???
   precision: 32
   accelerator: ???

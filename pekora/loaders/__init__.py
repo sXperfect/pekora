@@ -1,6 +1,5 @@
 from .. import const
 from .format.hic_loader import load_hic
-from .format.fast_hic_loader import load_hic_fast
 from .format.mcool_loader import load_mcool
 from .format.coo_loader import load_coo
 from .format.mcoo_loader import load_mcoo
@@ -12,7 +11,6 @@ def load_3c_data(
     chr1_region:str,
     resolution:int,
     balancing:str=None,
-    use_fast_func=True,
     chr2_region:str=None,
     ret_df=False,
 ):
@@ -27,8 +25,6 @@ def load_3c_data(
             Resolution
         balancing (str, optional): \
             Balancing method. Defaults to None.
-        use_fast_func (bool, optional): \
-            Keep intermediate data in memory. Defaults to True.
         chr2_region (str, optional): \
             Region in the second chromosome. \
             If None the region is equal to the first chromosome region. \
@@ -46,24 +42,14 @@ def load_3c_data(
     # TODO: Add step to fix entries in lower triangle of the matrix
     
     if path.endswith('.hic'):
-        if use_fast_func:
-            out = load_hic_fast(
-                path,
-                chr1_region,
-                resolution,
-                balancing,
-                chr2_region=chr2_region,
-                ret_df=ret_df,
-            )
-        else:
-            out = load_hic(
-                path,
-                chr1_region,
-                resolution,
-                balancing,
-                chr2_region=chr2_region,
-                ret_df=ret_df,
-            )
+        out = load_hic(
+            path,
+            chr1_region,
+            resolution,
+            balancing,
+            chr2_region=chr2_region,
+            ret_df=ret_df,
+        )
     elif path.endswith('.mcool') or path.endswith('.cool'):
         out = load_mcool(
             path,
